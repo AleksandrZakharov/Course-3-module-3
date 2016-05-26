@@ -2,9 +2,9 @@ class Address
 
 	attr_accessor :city, :state, :location
 
-	def initialize (city,state,location)
+	def initialize
 
-		@city = city; @state = state; @location = Point.new(location[:coordinates][0],location[:coordinates][1])
+		@city = nil; @state = nil; @location = nil
 
 	end
 
@@ -34,7 +34,15 @@ class Address
 
 			when nil then nil
 
-			when Hash then Address.new(object[:city], object[:state],object[:loc])
+			when Hash then
+				address = Address.new
+				if object[:city] then address.city = object[:city]
+				end
+				if object[:state] then address.state = object[:state]
+				end
+				if object[:loc] then address.location = Point.new(object[:loc][:coordinates][0],object[:loc][:coordinates][1])
+				end
+				address
 
 			when Address then object
 
