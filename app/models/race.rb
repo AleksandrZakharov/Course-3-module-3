@@ -6,6 +6,7 @@ class Race
 
     field :n, as: :name, type: String
     field :date, type: Date
+    field :next_bib, type: Integer, default: 0
     field :loc, as: :location, type: Address
 
     delegate :city, :city=, to: :location
